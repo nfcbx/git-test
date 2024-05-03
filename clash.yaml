@@ -1,0 +1,147 @@
+#---------------------------------------------------#
+## 配置文件需要放置在 $HOME/.config/clash/config.yml
+##
+## 如果您不知道如何操作，请参阅 SS-Rule-Snippet 的 Wiki：
+## https://github.com/Hackl0us/SS-Rule-Snippet/wiki/clash(X)
+#---------------------------------------------------#
+
+# HTTP 代理端口
+port: 7890
+
+# SOCKS5 代理端口
+socks-port: 7891
+
+# Linux 和 macOS 的 redir 透明代理端口 (重定向 TCP 和 TProxy UDP 流量)
+# redir-port: 7892
+
+# Linux 的透明代理端口（适用于 TProxy TCP 和 TProxy UDP 流量)
+# tproxy-port: 7893
+
+# HTTP(S) and SOCKS5 共用端口
+# mixed-port: 7890
+
+# 本地 SOCKS5/HTTP(S) 服务验证
+# authentication:
+#  - "user1:pass1"
+#  - "user2:pass2"
+
+# 允许局域网的连接（可用来共享代理）
+allow-lan: true
+bind-address: "*"
+# 此功能仅在 allow-lan 设置为 true 时生效，支持三种参数：
+# "*"                           绑定所有的 IP 地址
+# 192.168.122.11                绑定一个的 IPv4 地址
+# "[aaaa::a8aa:ff:fe09:57d8]"   绑定一个 IPv6 地址
+
+# Clash 路由工作模式
+# 规则模式：rule（规则） / global（全局代理）/ direct（全局直连）
+mode: rule
+
+# Clash 默认将日志输出至 STDOUT
+# 设置日志输出级别 (默认级别：silent，即不输出任何内容，以避免因日志内容过大而导致程序内存溢出）。
+# 5 个级别：silent / info / warning / error / debug。级别越高日志输出量越大，越倾向于调试，若需要请自行开启。
+log-level: silent
+
+# clash 的 RESTful API 监听地址
+external-controller: 127.0.0.1:9090
+
+# 存放配置文件的相对路径，或存放网页静态资源的绝对路径
+# Clash core 将会将其部署在 http://{{external-controller}}/ui
+# external-ui: folder
+
+# RESTful API 的口令 (可选)
+# 通过 HTTP 头中 Authorization: Bearer ${secret} 参数来验证口令
+# 当 RESTful API 的监听地址为 0.0.0.0 时，请务必设定口令以保证安全
+# secret: ""
+
+# 出站网卡接口
+# interface-name: en0
+
+# DNS 服务器和建立连接时的 静态 Hosts, 仅在 dns.enhanced-mode 模式为 redir-host 生效
+# 支持通配符域名 (例如: *.clash.dev, *.foo.*.example.com )
+# 不使用通配符的域名优先级高于使用通配符的域名 (例如: foo.example.com > *.example.com > .example.com )
+# 注意: +.foo.com 的效果等同于 .foo.com 和 foo.com
+hosts:
+# '*.clash.dev': 127.0.0.1
+# '.dev': 127.0.0.1
+# 'alpha.clash.dev': '::1'
+
+dns:
+  enable: true
+  use-hosts: true
+  nameserver:
+    - 192.168.123.190
+    # tencent dns
+    - https://1.12.12.12/dns-query
+    - https://120.53.53.53/dns-query
+    - tls://1.12.12.12
+    - tls://120.53.53.53
+    - tls://dot.pub
+    - https://doh.pub/dns-query
+    # ali dns
+    - https://223.5.5.5/dns-query
+    - https://223.6.6.6/dns-query
+    - tcp://223.5.5.5
+    - tcp://223.6.6.6
+    - tls://223.5.5.5
+    - tls://223.6.6.6
+    - tls://dns.alidns.com
+    - https://dns.alidns.com/dns-query
+    # google dns
+    - tls://dns.google:853
+    - tls://8.8.8.8:853
+    - tls://8.8.4.4:853
+    - https://dns.google/dns-query
+    - https://8.8.8.8/dns-query
+    - https://8.8.4.4/dns-query
+  default-nameserver:
+    - 192.168.123.190
+    - 119.29.29.29
+    - 223.5.5.5
+    - 223.6.6.6
+    - tcp://119.29.29.29
+    - tcp://223.5.5.5
+    - tcp://223.6.6.6
+proxies:
+
+proxy-groups:
+
+rules:
+  rules:
+    - DOMAIN-SUFFIX,acs.org,DIRECT
+    - DOMAIN-SUFFIX,aps.org,DIRECT
+    - DOMAIN-KEYWORD,blackwell-synergy.com,DIRECT
+    - DOMAIN-SUFFIX,cabdirect.org,DIRECT
+    - DOMAIN-SUFFIX,cambridge.org,DIRECT
+    - DOMAIN-SUFFIX,cell.com,DIRECT
+    - DOMAIN-KEYWORD,cnki.net,DIRECT
+    - DOMAIN-KEYWORD,deepdyve,DIRECT
+    - DOMAIN-SUFFIX,dl.acm.org,DIRECT
+    - DOMAIN-SUFFIX,doi.org,DIRECT
+    - DOMAIN-KEYWORD,elsevier,DIRECT
+    - DOMAIN-KEYWORD,els-cdn,DIRECT
+    - DOMAIN-SUFFIX,fenqubiao.com,DIRECT
+    - DOMAIN-KEYWORD,ieee.org,DIRECT
+    - DOMAIN-KEYWORD,iop.org,DIRECT
+    - DOMAIN-SUFFIX,jstor.org,DIRECT
+    - DOMAIN-KEYWORD,nature.com,DIRECT
+    - DOMAIN-KEYWORD,osapublishing.org,DIRECT
+    - DOMAIN-KEYWORD,oup.com,DIRECT
+    - DOMAIN-KEYWORD,pkulaw,DIRECT
+    - DOMAIN-KEYWORD,plos.org,DIRECT
+    - DOMAIN-KEYWORD,pnas.org,DIRECT
+    - DOMAIN-KEYWORD,readcube,DIRECT
+    - DOMAIN-SUFFIX,researchgate.net,DIRECT
+    - DOMAIN-KEYWORD,rsc.org,DIRECT
+    - DOMAIN-KEYWORD,sciencedirect,DIRECT
+    - DOMAIN-SUFFIX,sciencedirect.com,DIRECT
+    - DOMAIN-KEYWORD,sciencemag.org,DIRECT
+    - DOMAIN-KEYWORD,scopus.com,DIRECT
+    - DOMAIN-SUFFIX,springer.com,DIRECT
+    - DOMAIN-SUFFIX,springernature.com,DIRECT
+    - DOMAIN-SUFFIX,soopat.com,DIRECT
+    - DOMAIN-KEYWORD,tju.edu.cn,DIRECT
+    - DOMAIN-KEYWORD,wanfangdata,DIRECT
+    - DOMAIN-KEYWORD,webofknowledge.com,DIRECT
+    - DOMAIN-KEYWORD,webofscience,DIRECT
+    - DOMAIN-KEYWORD,wiley.com,DIRECT
