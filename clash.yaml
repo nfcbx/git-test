@@ -107,6 +107,7 @@ proxies:
 proxy-groups:
 
 rules:
+  - DOMAIN-SUFFIX,deepl.com,DIRECT
   - DOMAIN-SUFFIX,acs.org,DIRECT
   - DOMAIN-SUFFIX,aps.org,DIRECT
   - DOMAIN-KEYWORD,blackwell-synergy.com,DIRECT
