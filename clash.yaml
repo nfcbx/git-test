@@ -70,7 +70,7 @@ dns:
   enable: true
   use-hosts: true
   nameserver:
-    - 192.168.123.190
+    # - 192.168.123.190
     # tencent dns
     - https://1.12.12.12/dns-query
     - https://120.53.53.53/dns-query
