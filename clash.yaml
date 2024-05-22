@@ -95,13 +95,13 @@ dns:
     - https://8.8.8.8/dns-query
     - https://8.8.4.4/dns-query
   default-nameserver:
+    - tcp://119.29.29.29
+    - tcp://223.5.5.5
+    - tcp://223.6.6.6
     - 192.168.123.190
     - 119.29.29.29
     - 223.5.5.5
     - 223.6.6.6
-    - tcp://119.29.29.29
-    - tcp://223.5.5.5
-    - tcp://223.6.6.6
 proxies:
 
 proxy-groups:
